@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul Hadee — PlantLogs e-Portfolio | SDG 15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soil:#0F3D2E;
+    --soil-light:#1B5C44;
+    --paper:#F7F4ED;
+    --paper-dim:#EFEADF;
+    --sage:#8FB89A;
+    --terracotta:#C97B4A;
+    --ink:#1C2620;
+    --ink-soft:#5A6B62;
+    --line:rgba(15,61,46,0.14);
+    --max:1040px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--soil);
+  }
+
+  a{color:var(--soil-light);}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,244,237,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+  }
+  .nav-brand{
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.15rem;
+    color:var(--soil); display:flex; align-items:center; gap:8px;
+    text-decoration:none;
+  }
+  .nav-brand .leaf{font-size:1.2rem;}
+  .nav-links{display:flex; gap:22px; list-style:none; flex-wrap:wrap;}
+  .nav-links a{
+    text-decoration:none; color:var(--ink-soft); font-size:0.92rem;
+    font-weight:500; transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--terracotta);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:72px 0 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--soil-light); background:rgba(143,184,154,0.22);
+    padding:6px 12px; border-radius:100px; margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--terracotta);}
+  .hero h1{
+    font-size:clamp(2.4rem, 5.5vw, 4.1rem);
+    line-height:1.05; margin-bottom:18px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--terracotta); font-weight:500;
+  }
+  .hero p.lead{
+    font-size:1.08rem; color:var(--ink-soft); max-width:520px; margin-bottom:28px;
+  }
+  .meta-list{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .meta-list li{font-size:0.95rem; color:var(--ink-soft);}
+  .meta-list b{color:var(--ink); font-weight:600;}
+
+  /* hero visual: pressed-leaf style SDG card */
+  .hero-card{
+    background:var(--soil); color:var(--paper);
+    border-radius:18px; padding:32px;
+    position:relative; overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(15,61,46,0.45);
+  }
+  .hero-card::before{
+    content:"";
+    position:absolute; inset:-40% -40% auto auto;
+    width:280px; height:280px; border-radius:50%;
+    background:radial-gradient(circle, rgba(143,184,154,0.35), transparent 70%);
+  }
+  .hero-card .sdg-num{
+    font-family:'Fraunces',serif; font-size:4.2rem; font-weight:700;
+    line-height:1; color:var(--sage);
+  }
+  .hero-card .sdg-name{
+    font-family:'Fraunces',serif; font-size:1.35rem; font-weight:600;
+    margin:6px 0 14px;
+  }
+  .hero-card p{font-size:0.92rem; color:rgba(247,244,237,0.78);}
+  .hero-card .stack{
+    margin-top:24px; padding-top:20px; border-top:1px solid rgba(247,244,237,0.16);
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .pill{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+    background:rgba(247,244,237,0.1); border:1px solid rgba(247,244,237,0.18);
+    color:var(--paper); padding:5px 10px; border-radius:100px;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  section{padding:64px 0;}
+  section.alt{background:var(--paper-dim);}
+  .section-head{margin-bottom:40px; max-width:620px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.8rem, 3.5vw, 2.6rem);}
+  .section-head p{color:var(--ink-soft); margin-top:10px;}
+
+  /* ===== LAB JOURNAL TIMELINE ===== */
+  .journal{display:flex; flex-direction:column;}
+  .entry{
+    display:grid; grid-template-columns:64px 1fr; gap:0 28px;
+    border-top:1px solid var(--line);
+    padding:36px 0;
+  }
+  .entry:first-of-type{border-top:1px solid var(--line);}
+  .entry-index{
+    font-family:'Fraunces',serif; font-size:1.6rem; font-weight:700;
+    color:var(--sage); position:relative;
+  }
+  .entry-body h3{font-size:1.3rem; margin-bottom:4px;}
+  .entry-tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.74rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--terracotta);
+    margin-bottom:10px; display:block;
+  }
+  .entry-media{
+    margin:16px 0; border-radius:12px; overflow:hidden;
+    border:1px solid var(--line); background:#000;
+    aspect-ratio:16/9; max-width:480px;
+  }
+  .entry-media iframe{width:100%; height:100%; border:0; display:block;}
+  .entry-reflect{
+    color:var(--ink-soft); font-size:0.95rem; max-width:560px;
+  }
+  .entry-reflect b{color:var(--ink);}
+
+  /* ===== PROJECT CARDS ===== */
+  .proj-grid{display:flex; flex-direction:column; gap:28px;}
+  .proj-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding:32px; display:grid; grid-template-columns:1fr 1fr; gap:28px;
+  }
+  .proj-card .proj-text h3{font-size:1.5rem; margin-bottom:6px;}
+  .proj-card .proj-sub{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+    color:var(--soil-light); text-transform:uppercase; letter-spacing:0.05em;
+    margin-bottom:14px; display:block;
+  }
+  .proj-card .proj-text p{color:var(--ink-soft); font-size:0.95rem; margin-bottom:10px;}
+  .proj-card .proj-text p b{color:var(--ink);}
+  .proj-links{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:0.86rem;
+    padding:10px 18px; border-radius:100px; text-decoration:none;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--soil); color:var(--paper);}
+  .btn-primary:hover{box-shadow:0 8px 18px -8px rgba(15,61,46,0.5);}
+  .btn-outline{background:transparent; color:var(--soil); border:1px solid var(--line);}
+  .btn-outline:hover{border-color:var(--soil);}
+  .proj-media{border-radius:12px; overflow:hidden; border:1px solid var(--line); background:#000; aspect-ratio:16/9;}
+  .proj-media iframe{width:100%; height:100%; border:0; display:block;}
+  .feature-list{list-style:none; margin:14px 0; display:flex; flex-direction:column; gap:6px;}
+  .feature-list li{
+    font-size:0.88rem; color:var(--ink-soft); padding-left:18px; position:relative;
+  }
+  .feature-list li::before{
+    content:"·"; position:absolute; left:4px; color:var(--terracotta); font-weight:700; font-size:1.2em;
+  }
+
+  /* ===== REFLECTION ===== */
+  .reflection-card{
+    background:var(--soil); color:var(--paper); border-radius:18px;
+    padding:44px; position:relative; overflow:hidden;
+  }
+  .reflection-card::after{
+    content:"”"; font-family:'Fraunces',serif; font-size:9rem; line-height:1;
+    position:absolute; right:24px; top:-16px; color:rgba(247,244,237,0.06);
+  }
+  .reflection-card h2{color:var(--paper);}
+  .reflection-card p{
+    color:rgba(247,244,237,0.85); font-size:1.02rem; max-width:680px; margin-top:16px;
+    position:relative; z-index:1;
+  }
+
+  /* ===== SKILLS ===== */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:14px;
+  }
+  .skill-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:12px;
+    padding:18px; text-align:center;
+  }
+  .skill-card .icon{font-size:1.6rem; margin-bottom:8px; display:block;}
+  .skill-card span{font-weight:600; font-size:0.9rem;}
+
+  /* ===== RESOURCES ===== */
+  .resource-cols{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .resource-cols h4{font-size:1.05rem; margin-bottom:12px;}
+  .resource-cols ul{list-style:none; display:flex; flex-direction:column; gap:8px;}
+  .resource-cols li{
+    font-size:0.92rem; color:var(--ink-soft); padding-left:16px; position:relative;
+  }
+  .resource-cols li::before{
+    content:"—"; position:absolute; left:0; color:var(--sage);
+  }
+  .resource-cols a{color:var(--soil-light); text-decoration:none; font-weight:500;}
+  .resource-cols a:hover{text-decoration:underline;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:40px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  }
+  footer p{font-size:0.86rem; color:var(--ink-soft);}
+  footer .leaf{color:var(--sage);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .entry{grid-template-columns:1fr; gap:6px;}
+    .entry-index{font-size:1.1rem;}
+    .proj-card{grid-template-columns:1fr;}
+    .resource-cols{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, .btn:focus-visible{outline:2px solid var(--terracotta); outline-offset:2px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-brand"><span class="leaf">🌿</span> PlantLogs</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#labs">Labs</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===================== HOME / HERO ===================== -->
+<header class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> TK2323 · Mobile Programming · A221505</span>
+      <h1>PlantLogs — a <em>field journal</em> for the plants around you.</h1>
+      <p class="lead">An Android app that helps everyday plant owners log, monitor and share the wellbeing of their plants — built across five labs and two projects in support of SDG 15: Life on Land.</p>
+      <ul class="meta-list">
+        <li><b>Name:</b> Abdul Hadee Bin Jaapar</li>
+        <li><b>Matric No.:</b> A221505</li>
+        <li><b>Programme:</b> Bachelor of Information Technology</li>
+        <li><b>Instructor:</b> Cikgu Izwan</li>
+      </ul>
+    </div>
+    <div class="hero-card">
+      <div class="sdg-num">15</div>
+      <div class="sdg-name">Life on Land</div>
+      <p>Malaysia's rainforests and biodiversity face ongoing pressure from land degradation. PlantLogs supports SDG 15 by giving plant owners — from balcony gardeners to smallholders — a simple way to monitor, record and act on the health of the plants they're responsible for.</p>
+      <div class="stack">
+        <span class="pill">Jetpack Compose</span>
+        <span class="pill">Room</span>
+        <span class="pill">Firebase Firestore</span>
+        <span class="pill">Retrofit</span>
+        <span class="pill">ML Kit</span>
+        <span class="pill">CameraX</span>
+        <span class="pill">GPS</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== LABS ===================== -->
+<section id="labs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> Lab Submissions</span>
+      <h2>Five labs, one growing app.</h2>
+      <p>Each lab added a new layer to PlantLogs — from a static screen to a fully navigable, persistent application.</p>
+    </div>
+
+    <div class="journal">
+
+      <div class="entry">
+        <div class="entry-index">01</div>
+        <div class="entry-body">
+          <span class="entry-tag">Lab 1 — UI</span>
+          <h3>Static Interface</h3>
+          <div class="entry-media">
+            <iframe src="https://www.youtube.com/embed/BNrR5qXxxmc" title="Lab 1 — UI" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="entry-reflect">Building PlantLogs' first screen in Jetpack Compose was my introduction to declarative UI. <b>Reflection:</b> coming from a more traditional view-based mindset, learning to describe "what the UI should look like" rather than "how to update it" took some adjustment, but it made the layout code far more readable.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-index">02</div>
+        <div class="entry-body">
+          <span class="entry-tag">Lab 2 — Interaction</span>
+          <h3>State &amp; Input</h3>
+          <div class="entry-media">
+            <iframe src="https://www.youtube.com/embed/APX2j8rbKGg" title="Lab 2 — Interaction" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="entry-reflect">Lab 2 introduced <b>mutableStateOf</b> and TextFields, letting users actually type plant details into the app for the first time. <b>Reflection:</b> understanding how recomposition is triggered by state changes was the key concept here — once it clicked, building interactive forms became much more intuitive.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-index">03</div>
+        <div class="entry-body">
+          <span class="entry-tag">Lab 3 — Material Design</span>
+          <h3>Visual Identity</h3>
+          <div class="entry-media">
+            <iframe src="https://www.youtube.com/embed/FZo-8mG3RuM" title="Lab 3 — Material Design" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="entry-reflect">This lab gave PlantLogs its green, nature-inspired theme using Material3 colour schemes, typography and shapes. <b>Reflection:</b> I learned how a consistent design system — colours, type scale, card shapes — makes an app feel intentional rather than like a collection of separate screens.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-index">04</div>
+        <div class="entry-body">
+          <span class="entry-tag">Lab 4 — Navigation</span>
+          <h3>Multi-Screen Architecture</h3>
+          <div class="entry-media">
+            <iframe src="https://www.youtube.com/embed/b9G1fNq7HxU" title="Lab 4 — Navigation" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="entry-reflect">Lab 4 was a turning point — introducing NavController, routes, and a shared ViewModel so screens could pass data between each other. <b>Reflection:</b> this lab taught me MVVM in practice, and the resulting structure became the backbone that every later feature in PlantLogs was built on top of.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-index">05</div>
+        <div class="entry-body">
+          <span class="entry-tag">Lab 5 — Room Database</span>
+          <h3>Local Persistence</h3>
+          <div class="entry-media">
+            <iframe src="https://www.youtube.com/embed/DGDh-H1OFD8" title="Lab 5 — Room" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <p class="entry-reflect">Room replaced in-memory state with a real SQLite database via Entity, DAO and Repository layers, so plant records now survive an app restart. <b>Reflection:</b> the Repository pattern was the standout lesson — keeping the ViewModel unaware of *how* data is stored made it straightforward to later add Firebase without rewriting the UI layer.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> Project Submissions</span>
+      <h2>From Lab 4 to a connected, sensor-aware app.</h2>
+      <p>Two milestone projects turned the lab exercises into a working application — first a navigable multi-screen app, then a fully connected system with cloud sync, live data and hardware sensors.</p>
+    </div>
+
+    <div class="proj-grid">
+
+      <!-- PROJECT 1 -->
+      <div class="proj-card">
+        <div class="proj-text">
+          <span class="proj-sub">Project 1 · Lab 4 + Working Features</span>
+          <h3>PlantLogs — Navigation &amp; Core Features</h3>
+          <p><b>Problem statement:</b> Plant owners have no simple, structured way to record what they're growing, where, and how it's doing — information ends up scattered across notes apps or forgotten entirely.</p>
+          <ul class="feature-list">
+            <li>5-screen navigation (Home, Add Plant, Plant List, Plant Detail, Health Check)</li>
+            <li>Shared ViewModel state across screens</li>
+            <li>Editable plant and health records</li>
+          </ul>
+          <p><b>Lessons learned:</b> Structuring navigation routes and a shared ViewModel early made every later feature easier to slot in. Keeping screens small and focused on one task each kept the codebase manageable as PlantLogs grew.</p>
+          <div class="proj-links">
+            <a class="btn btn-primary" href="https://youtu.be/95My_S_3J4o" target="_blank" rel="noopener">▶ Watch VSR</a>
+            <a class="btn btn-outline" href="https://github.com/a221505-AHadee/TreeLogs.git" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+        <div class="proj-media">
+          <iframe src="https://www.youtube.com/embed/95My_S_3J4o" title="Project 1 VSR" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="proj-card">
+        <div class="proj-text">
+          <span class="proj-sub">Project 2 · Lab 5 + API + Sensors + Cloud</span>
+          <h3>PlantLogs — Connected &amp; Sensor-Aware</h3>
+          <p><b>Problem statement:</b> Even with records saved on-device, plant owners still lack live environmental context (weather), an easy way to identify a specific plant on-site, and a way to learn from how others in the community are caring for similar plants.</p>
+          <ul class="feature-list">
+            <li>8 screens — added QR Scan and Community boards</li>
+            <li>Room Database for private plant &amp; health records</li>
+            <li>Firebase Firestore for community plant sharing across devices</li>
+            <li>OpenWeatherMap REST API for live weather and watering guidance</li>
+            <li>GPS location capture per plant</li>
+            <li>Camera sensor — ML Kit + CameraX QR scanning, auto-generated via ZXing</li>
+            <li>Multiple photos per plant/health record with full-screen viewer</li>
+          </ul>
+          <p><b>Lessons learned:</b> Connecting four different data sources — local DB, cloud DB, REST API and hardware sensors — through a single Repository and ViewModel showed me how much the architecture from Lab 5 paid off. The biggest real-world lesson was resilience: two of my planned third-party APIs were discontinued mid-project, which taught me to verify external dependencies early and design fallbacks (local "Care Reminders") so the app degrades gracefully.</p>
+          <div class="proj-links">
+            <a class="btn btn-primary" href="https://youtu.be/rmNEFq5hhbY" target="_blank" rel="noopener">▶ Watch VSR</a>
+            <a class="btn btn-outline" href="https://github.com/a221505-AHadee/TreeLogs/tree/PROJECT-2" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+        <div class="proj-media">
+          <iframe src="https://www.youtube.com/embed/rmNEFq5hhbY" title="Project 2 VSR" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REFLECTION ===================== -->
+<section id="reflection">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> Learning Journey</span>
+      <h2>From static screens to a connected ecosystem.</h2>
+    </div>
+    <div class="reflection-card">
+      <h2>Lab 1 → Project 2</h2>
+      <p>My journey began with Lab 1, where I learned to build static UI layouts using Jetpack Compose — a significant shift from traditional XML-based Android development. Lab 2 introduced state management and user interaction, while Lab 3 taught me Material Design principles to make the app visually consistent. Lab 4 was a turning point, introducing Navigation and ViewModel architecture, which laid the foundation for PlantLogs as a multi-screen app. Lab 5 brought persistent storage with Room Database, transforming PlantLogs from a temporary in-memory app into one that retains data permanently. Project 2 was the most challenging and rewarding phase — integrating Firebase Firestore for community sharing, the OpenWeatherMap REST API for live weather data, GPS for location tracking, and ML Kit for QR code scanning. The biggest challenge was understanding how these different technologies — local database, cloud database, REST APIs, and hardware sensors — connect through the Repository and ViewModel layers, and learning to adapt when external services I depended on changed unexpectedly. Looking back, I've grown from writing simple static screens to building a fully functional, sensor-aware, cloud-connected mobile application that supports SDG 15 by helping users monitor and care for the plants in their environment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> Skills &amp; Tech Stack</span>
+      <h2>Tools I can now build with confidently.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="icon">🧩</span><span>Kotlin</span></div>
+      <div class="skill-card"><span class="icon">🎨</span><span>Jetpack Compose</span></div>
+      <div class="skill-card"><span class="icon">🧭</span><span>Navigation Compose</span></div>
+      <div class="skill-card"><span class="icon">🗄️</span><span>Room Database</span></div>
+      <div class="skill-card"><span class="icon">☁️</span><span>Firebase Firestore</span></div>
+      <div class="skill-card"><span class="icon">🌐</span><span>Retrofit / REST APIs</span></div>
+      <div class="skill-card"><span class="icon">📷</span><span>CameraX</span></div>
+      <div class="skill-card"><span class="icon">🔳</span><span>ML Kit Barcode Scanning</span></div>
+      <div class="skill-card"><span class="icon">📍</span><span>GPS / Location Services</span></div>
+      <div class="skill-card"><span class="icon">🔁</span><span>Coroutines &amp; Flow</span></div>
+      <div class="skill-card"><span class="icon">🏗️</span><span>MVVM + Repository Pattern</span></div>
+      <div class="skill-card"><span class="icon">🖼️</span><span>Coil &amp; ZXing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESOURCES ===================== -->
+<section id="resources">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> Resources &amp; References</span>
+      <h2>APIs, libraries and acknowledgements.</h2>
+    </div>
+    <div class="resource-cols">
+      <div>
+        <h4>APIs &amp; Libraries</h4>
+        <ul>
+          <li><a href="https://openweathermap.org/api" target="_blank" rel="noopener">OpenWeatherMap API</a> — live weather &amp; watering guidance</li>
+          <li><a href="https://firebase.google.com/docs/firestore" target="_blank" rel="noopener">Firebase Firestore</a> — community plant sharing</li>
+          <li><a href="https://developers.google.com/ml-kit/vision/barcode-scanning" target="_blank" rel="noopener">ML Kit Barcode Scanning</a> — QR detection</li>
+          <li><a href="https://developer.android.com/training/camerax" target="_blank" rel="noopener">CameraX</a> — camera preview &amp; frame analysis</li>
+          <li><a href="https://github.com/zxing/zxing" target="_blank" rel="noopener">ZXing</a> — QR code generation</li>
+          <li><a href="https://coil-kt.github.io/coil/" target="_blank" rel="noopener">Coil</a> — image loading</li>
+          <li><a href="https://developers.google.com/android/reference/com/google/android/gms/location/FusedLocationProviderClient" target="_blank" rel="noopener">Fused Location Provider</a> — GPS coordinates</li>
+        </ul>
+      </div>
+      <div>
+        <h4>AI Assistance</h4>
+        <ul>
+          <li>Claude (Anthropic) was used throughout Project 1 and Project 2 for code generation, debugging Gradle/KSP build configuration, architectural guidance (Repository/ViewModel patterns), and drafting this e-Portfolio.</li>
+          <li>All AI-assisted code was reviewed, tested on-device, and modified to fit PlantLogs' data model and SDG 15 context.</li>
+          <li>I can explain and live-modify every part of the implementation, including Room entities, Retrofit services, ML Kit scanning logic, and Firestore sync.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; width:100%;">
+    <p><span class="leaf">🌿</span> PlantLogs — Abdul Hadee Bin Jaapar · A221505 · 2026</p>
+    <p>TK2323/TM2213 Mobile Programming · FTSM, UKM</p>
+  </div>
+</footer>
+
+</body>
+</html>
