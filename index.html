@@ -244,6 +244,26 @@
   .resource-cols a{color:var(--soil-light); text-decoration:none; font-weight:500;}
   .resource-cols a:hover{text-decoration:underline;}
 
+  /* ===== SCREENSHOTS ===== */
+  .shot-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:24px;
+  }
+  .shot{
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .shot-frame{
+    border-radius:20px; overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 16px 40px -24px rgba(15,61,46,0.35);
+    aspect-ratio:9/19.5; background:#000;
+  }
+  .shot-frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .shot-caption{
+    font-size:0.86rem; color:var(--ink-soft); text-align:center;
+  }
+  .shot-caption b{color:var(--soil); font-family:'Fraunces',serif; font-weight:600;}
+
   /* ===== FOOTER ===== */
   footer{
     padding:40px 0; border-top:1px solid var(--line);
@@ -279,6 +299,7 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#labs">Labs</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#reflection">Reflection</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#resources">Resources</a></li>
@@ -442,15 +463,52 @@
           </ul>
           <p><b>Lessons learned:</b> Connecting four different data sources — local DB, cloud DB, REST API and hardware sensors — through a single Repository and ViewModel showed me how much the architecture from Lab 5 paid off. The biggest real-world lesson was resilience: two of my planned third-party APIs were discontinued mid-project, which taught me to verify external dependencies early and design fallbacks (local "Care Reminders") so the app degrades gracefully.</p>
           <div class="proj-links">
-            <a class="btn btn-primary" href="https://youtu.be/rmNEFq5hhbY" target="_blank" rel="noopener">▶ Watch VSR</a>
+            <a class="btn btn-primary" href="https://youtu.be/4L6xjiWre2U" target="_blank" rel="noopener">▶ Watch VSR</a>
             <a class="btn btn-outline" href="https://github.com/a221505-AHadee/TreeLogs/tree/PROJECT-2" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </div>
         <div class="proj-media">
-          <iframe src="https://www.youtube.com/embed/rmNEFq5hhbY" title="Project 2 VSR" loading="lazy" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/4L6xjiWre2U" title="Project 2 VSR" loading="lazy" allowfullscreen></iframe>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCREENSHOTS ===================== -->
+<section id="screenshots" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span> App Screenshots</span>
+      <h2>PlantLogs, screen by screen.</h2>
+      <p>Captured from a device running Project 2 — Room, Firebase, the OpenWeatherMap API, GPS and the QR scanner all working together.</p>
+    </div>
+    <div class="shot-grid">
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/HOMEPAGE.jpeg" alt="PlantLogs home screen showing plant and health check counts, and the main feature list" loading="lazy"></div>
+        <div class="shot-caption"><b>Home</b> — overview, stats and quick access to every feature</div>
+      </div>
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/ADD_PLANT.jpeg" alt="Add plant screen with name, species, GPS-captured location and an attached photo" loading="lazy"></div>
+        <div class="shot-caption"><b>Add Plant</b> — GPS auto-fills location, photo attached from gallery</div>
+      </div>
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/QR_N_WEATHER.jpeg" alt="Plant detail screen showing the auto-generated QR code, live weather card and care reminders" loading="lazy"></div>
+        <div class="shot-caption"><b>Plant Detail</b> — auto-generated QR code, live OpenWeatherMap data and care reminders</div>
+      </div>
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/SCANNER_QR.jpeg" alt="Scan screen with live camera preview searching for a plant QR code" loading="lazy"></div>
+        <div class="shot-caption"><b>Scan</b> — CameraX preview with ML Kit reading plant QR codes</div>
+      </div>
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/PLANT_LIST.jpeg" alt="Plant list screen showing four logged plants with thumbnails, codes and coordinates" loading="lazy"></div>
+        <div class="shot-caption"><b>Plant List</b> — every logged plant with its photo, QR code and GPS coordinates</div>
+      </div>
+      <div class="shot">
+        <div class="shot-frame"><img src="screenshots/COMMUNITY.jpeg" alt="Community plant board showing plants shared by different users via Firebase Firestore" loading="lazy"></div>
+        <div class="shot-caption"><b>Community</b> — plants shared across devices via Firebase Firestore</div>
+      </div>
     </div>
   </div>
 </section>
